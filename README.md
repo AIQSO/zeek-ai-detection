@@ -67,4 +67,4 @@ This pattern (plus device attribution, JA3/JA4 client fingerprinting, flow-shape
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+Apache-2.0 — see [LICENSE](LICENSE).
