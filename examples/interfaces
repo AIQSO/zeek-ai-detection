@@ -1,0 +1,23 @@
+# /etc/network/interfaces fragment — capture bridge on a Proxmox/Debian host.
+#
+# enp5s0f3 is the dedicated capture NIC, permanently broken out of the LACP
+# bond and cabled to the switch's mirror port. It must NEVER be re-added to
+# the bond — it looks unused; it is not.
+#
+# bridge-ageing 0 is required: a learning bridge learns the mirrored frames'
+# destination MACs on the capture-NIC side and stops flooding them to the
+# sensor port. With default ageing the sensor goes quiet minutes after boot
+# while everything looks configured correctly.
+
+auto enp5s0f3
+iface enp5s0f3 inet manual
+
+auto vmbr2
+iface vmbr2 inet manual
+    bridge-ports enp5s0f3
+    bridge-stp off
+    bridge-fd 0
+    bridge-ageing 0
+# No address stanza: this is a pure L2 capture bridge. It should not have
+# an IP, and nothing except the capture NIC and the sensor's interface
+# should ever be attached to it.
