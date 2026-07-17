@@ -51,7 +51,7 @@ def main(path: str) -> int:
     problems = []
     entries = {}  # domain -> line number
 
-    with open(path, encoding="ascii") as f:
+    with open(path, encoding="utf-8") as f:
         lines = f.read().splitlines()
 
     if not lines or lines[0] != HEADER:
