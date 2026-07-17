@@ -59,7 +59,7 @@ Hard blind spots, by design:
 
 ## The domain list
 
-`lists/ai-domains.txt` is a starting point, not an authority — AI services launch weekly. Entries are suffix-matched on label boundaries. PRs adding or correcting entries are welcome; keep entries specific enough that a match actually means "AI service" (no bare CDN or cloud-provider domains).
+`lists/ai-domains.txt` is a starting point, not an authority — AI services launch weekly. Entries are suffix-matched on label boundaries. PRs adding or correcting entries are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for the acceptance bar (in short: an entry must be specific enough that a match actually means "AI service" — no bare CDN or cloud-provider domains). CI lint-checks the list format on every PR.
 
 ## Production use
 
