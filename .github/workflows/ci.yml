@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  domain-list:
+    name: Lint domain list
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/check-domains.py lists/ai-domains.txt
+
+  zeek-parse:
+    name: Parse-check Zeek script
+    runs-on: ubuntu-latest
+    container: zeek/zeek:latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: zeek --parse-only scripts/ai-services.zeek
