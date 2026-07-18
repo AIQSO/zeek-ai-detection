@@ -1,0 +1,23 @@
+#fields	domain
+dns.google
+dns.google.com
+cloudflare-dns.com
+one.one.one.one
+dns.quad9.net
+dns9.quad9.net
+dns10.quad9.net
+dns11.quad9.net
+doh.opendns.com
+doh.familyshield.opendns.com
+dns.adguard.com
+adguard-dns.com
+dns.nextdns.io
+doh.cleanbrowsing.org
+doh.dns.sb
+dns.mullvad.net
+doh.mullvad.net
+dns.alidns.com
+doh.pub
+dot.pub
+dns.controld.com
+doh.libredns.gr

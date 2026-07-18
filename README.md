@@ -12,6 +12,9 @@ Companion deep-dive: **[Passive AI-service detection with Zeek: architecture and
 |---|---|
 | `scripts/ai-services.zeek` | Zeek script — matches DNS queries and TLS SNI against the domain list, writes hits to `ai_services.log` |
 | `lists/ai-domains.txt` | Curated AI-provider domains (suffix-matched, so `openai.com` covers `api.openai.com`) |
+| `scripts/dns-evasion.zeek` | Companion script — detects encrypted-DNS use (DoH resolver contact, DoT/DoQ on port 853, the Firefox DoH canary), i.e. hosts whose DNS you can no longer see |
+| `lists/doh-resolvers.txt` | Known public DoH/DoT resolver endpoints (same format and matching as the AI list) |
+| `docs/dns-evasion.md` | Detecting encrypted DNS, deploying the DoH canary, blocking resolvers, and the ECH/JA4 outlook |
 | `docs/mirror-port-capture.md` | How to build a reliable mirror-port capture path (switch → dedicated NIC → IP-less bridge → sensor), and the silent-failure landmines |
 | `examples/node.cfg` | Zeek node config for a dedicated capture interface |
 | `examples/interfaces` | Debian/Proxmox `/etc/network/interfaces` stanza for the capture bridge — including the critical `bridge-ageing 0` |
@@ -46,8 +49,8 @@ Honesty about detection limits is the point, not a disclaimer:
 
 | Signal | Sees | Cannot see |
 |---|---|---|
-| DNS queries | Which hosts resolve AI-provider domains, and how often | DNS-over-HTTPS/TLS hides queries (though DoH use is itself a policy signal) |
-| TLS SNI | Which AI service an encrypted session is talking to | Encrypted Client Hello (ECH) will erode SNI over time |
+| DNS queries | Which hosts resolve AI-provider domains, and how often | DNS-over-HTTPS/TLS hides queries — but DoH use is itself detectable and manageable; see `scripts/dns-evasion.zeek` and `docs/dns-evasion.md` |
+| TLS SNI | Which AI service an encrypted session is talking to | Encrypted Client Hello (ECH, RFC 9849) will erode SNI over time — the outlook and mitigation ladder are in `docs/dns-evasion.md` |
 
 Hard blind spots, by design:
 

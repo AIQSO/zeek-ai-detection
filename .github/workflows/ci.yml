@@ -15,11 +15,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: python3 scripts/check-domains.py lists/ai-domains.txt
+      - run: python3 scripts/check-domains.py lists/doh-resolvers.txt
 
   zeek-parse:
-    name: Parse-check Zeek script
+    name: Parse-check Zeek scripts
     runs-on: ubuntu-latest
     container: zeek/zeek:latest
     steps:
       - uses: actions/checkout@v4
       - run: zeek --parse-only scripts/ai-services.zeek
+      - run: zeek --parse-only scripts/dns-evasion.zeek
