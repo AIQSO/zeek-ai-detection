@@ -29,6 +29,11 @@ Rejected:
 - Subdomains of an existing entry (`api.openai.com` when `openai.com` is
   listed) — entries are suffix-matched, so the longer one is redundant
 
+The same format and rules apply to `lists/doh-resolvers.txt`, with its
+own bar: entries must be resolver *service* endpoints (`dns.quad9.net`),
+never a DNS company's website (`quad9.net`) — visiting a resolver's
+homepage is not DNS evasion.
+
 ## Domain list: format
 
 The file is read by Zeek's input framework, so the format is strict:
